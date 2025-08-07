@@ -1,0 +1,33 @@
+name: Release Docker Image
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build Docker image
+        run: |
+          docker build -t trublu-app:${{ github.ref_name }} .
+
+      - name: Save Docker image as tar
+        run: |
+          docker save trublu-app:${{ github.ref_name }} -o trublu-app-${{ github.ref_name }}.tar
+
+      - name: Upload Docker image to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: trublu-app-${{ github.ref_name }}.tar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
