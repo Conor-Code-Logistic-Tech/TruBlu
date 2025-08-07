@@ -15,6 +15,28 @@
     padding: var(--space-md) 0;
 }
 
+.logo a {
+    text-decoration: none;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.logo-icon {
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    transition: var(--transition-medium);
+}
+
+.logo-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
 .logo-text {
     font-family: var(--font-display);
     font-size: 1.75rem;
@@ -24,8 +46,13 @@
     margin: 0;
 }
 
-.logo a {
-    text-decoration: none;
+.logo:hover .logo-icon {
+    transform: translateY(-1px);
+    color: var(--primary-blue-dark);
+}
+
+.logo:hover .logo-text {
+    color: var(--primary-blue-dark);
 }
 
 .header-actions .btn {
@@ -133,6 +160,11 @@
     .logo-text {
         font-size: 1.5rem;
     }
+    
+    .logo-icon svg {
+        width: 32px;
+        height: 32px;
+    }
 }
 
 /* Footer Styles */
@@ -153,6 +185,21 @@
 .footer-brand h3 {
     color: var(--background-white);
     margin-bottom: var(--space-md);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.footer-logo .logo-icon {
+    color: var(--background-white);
+}
+
+.footer-logo h3 {
+    margin: 0;
 }
 
 .footer-brand p {
