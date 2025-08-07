@@ -1,11 +1,12 @@
-name: Release Docker Image
+name: Push Docker Image to GHCR on Push
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main  # or whichever branches you want to trigger on
 
 jobs:
-  build-and-upload:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,17 +18,17 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Build Docker image
-        run: |
-          docker build -t trublu-app:${{ github.ref_name }} .
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Save Docker image as tar
+      - name: Build and tag Docker image
         run: |
-          docker save trublu-app:${{ github.ref_name }} -o trublu-app-${{ github.ref_name }}.tar
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/trublu-app
+          TAG=${{ github.sha }}
+          docker build -t $IMAGE_NAME:$TAG .
 
-      - name: Upload Docker image to release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: trublu-app-${{ github.ref_name }}.tar
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push Docker image to GHCR
+        run: |
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/trublu-app
+          TAG=${{ github.sha }}
+          docker push $IMAGE_NAME:$TAG
