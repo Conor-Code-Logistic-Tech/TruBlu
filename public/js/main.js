@@ -71,17 +71,63 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
+                // Add staggered animation delays
+                setTimeout(() => {
+                    entry.target.classList.add('animate-in');
+                    
+                    // Add specific animations based on element type
+                    if (entry.target.classList.contains('service-card')) {
+                        entry.target.classList.add('bounce-in');
+                    } else if (entry.target.classList.contains('stat')) {
+                        entry.target.classList.add('slide-in-left');
+                        animateNumber(entry.target);
+                    } else if (entry.target.classList.contains('testimonial')) {
+                        entry.target.classList.add('slide-in-right');
+                    } else if (entry.target.classList.contains('hero-card')) {
+                        entry.target.classList.add('float');
+                    }
+                }, index * 150);
             }
         });
     }, observerOptions);
     
     // Observe elements that should animate in
-    const animatedElements = document.querySelectorAll('.service-card, .hero-card, .testimonial, .stat');
+    const animatedElements = document.querySelectorAll('.service-card, .hero-card, .testimonial, .stat, .section-header');
     animatedElements.forEach(el => observer.observe(el));
+    
+    // Add parallax effect to hero background
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
 });
+
+// Animate numbers when they come into view
+function animateNumber(element) {
+    const numberElement = element.querySelector('.stat-number');
+    if (!numberElement) return;
+    
+    const finalNumber = numberElement.textContent;
+    const numericValue = parseInt(finalNumber.replace(/[^\d]/g, ''));
+    const suffix = finalNumber.replace(/[\d]/g, '');
+    
+    let currentNumber = 0;
+    const increment = numericValue / 50;
+    
+    const timer = setInterval(() => {
+        currentNumber += increment;
+        if (currentNumber >= numericValue) {
+            currentNumber = numericValue;
+            clearInterval(timer);
+        }
+        numberElement.textContent = Math.floor(currentNumber) + suffix;
+    }, 40);
+}
 
 // Form validation helpers (for future contact forms)
 function validateEmail(email) {
