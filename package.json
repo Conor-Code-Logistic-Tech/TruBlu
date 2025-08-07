@@ -1,0 +1,16 @@
+{
+  "name": "trublu-home",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "compression": "^1.7.4",
+    "helmet": "^7.0.0"
+  }
+}

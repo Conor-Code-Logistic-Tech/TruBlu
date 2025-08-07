@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="<%= company %> – modern financial services site with a premium, performance‑first experience" />
+  <title><%= company %> — Home</title>
+  <link rel="preload" href="/assets/hero-shape.svg" as="image">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header" data-elevate>
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <img src="/assets/logo.svg" alt="<%= company %> logo" width="36" height="36" />
+        <span><%= company %></span>
+      </a>
+      <nav class="nav">
+        <% nav.forEach(i => { %>
+          <a href="<%= i.href %>"><%= i.label %></a>
+        <% }) %>
+        <a class="btn btn--ghost" href="#contact">Book a call</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1>
+          Smart money moves,
+          <span class="accent">without the noise.</span>
+        </h1>
+        <p class="lede"><%= tagline %>. Tailored plans, real‑time insights, and human expertise—so you can focus on growth.</p>
+        <div class="cta">
+          <a class="btn btn--primary" href="#contact">Get your free plan</a>
+          <a class="btn btn--link" href="#solutions">See how it works →</a>
+        </div>
+        <div class="trust">
+          <div class="pill"> FCA‑aware guidance </div>
+          <div class="pill"> 4.9★ client satisfaction </div>
+          <div class="pill"> Avg. 12 days to launch </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="glasscard" data-float>
+          <div class="stat">
+            <span class="label">Portfolio drift</span>
+            <span class="value">−1.8%</span>
+          </div>
+          <div class="spark" aria-hidden="true"></div>
+        </div>
+        <img class="hero-shape" src="/assets/hero-shape.svg" alt="" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof / Logos -->
+  <section class="logos">
+    <div class="container">
+      <p class="eyebrow">Trusted by teams across fintech & SMB</p>
+      <ul>
+        <li>Acme Capital</li>
+        <li>Northstar</li>
+        <li>Maple Bank</li>
+        <li>Strata</li>
+        <li>Helix</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Solutions -->
+  <section id="solutions" class="section">
+    <div class="container grid features">
+      <article class="card reveal">
+        <h3>Automated cashflow mapping</h3>
+        <p>See inflows/outflows in one place. Alerts for anomalies and runway, with clear next steps.</p>
+        <a href="#contact" class="learn">Talk to an advisor →</a>
+      </article>
+      <article class="card reveal">
+        <h3>Goal‑based planning</h3>
+        <p>Set milestones—tax, pension, investments—and track confidently with living plans.</p>
+        <a href="#contact" class="learn">Start your plan →</a>
+      </article>
+      <article class="card reveal">
+        <h3>Compliance‑friendly reports</h3>
+        <p>Beautiful PDFs and dashboards that make board and regulator updates painless.</p>
+        <a href="#contact" class="learn">See sample report →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section id="why" class="section alt">
+    <div class="container split">
+      <div>
+        <h2>Advice you’ll actually use</h2>
+        <p>We combine human experts with focused automation. No cookie‑cutter portfolios; everything is shaped around your risk, time horizon, and goals.</p>
+        <ul class="ticks">
+          <li>Clear, plain‑English recommendations</li>
+          <li>Bank‑grade security (TLS 1.3, encryption at rest)</li>
+          <li>Cancel anytime. No hidden fees.</li>
+        </ul>
+      </div>
+      <div class="metric-grid">
+        <div class="metric">
+          <span class="kpi">92%</span>
+          <span class="sub">hit target allocations within 60 days</span>
+        </div>
+        <div class="metric">
+          <span class="kpi">£1.2M</span>
+          <span class="sub">average assets under guidance</span>
+        </div>
+        <div class="metric">
+          <span class="kpi">15min</span>
+          <span class="sub">typical onboarding time</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <h2>Client results</h2>
+      <div class="carousel" data-carousel>
+        <figure class="slide active">
+          <blockquote>“The visibility is unreal. We made three key moves in the first week.”</blockquote>
+          <figcaption>— Jess R., COO</figcaption>
+        </figure>
+        <figure class="slide">
+          <blockquote>“Clean advice, no fluff. Our board decks basically write themselves.”</blockquote>
+          <figcaption>— Amir K., Founder</figcaption>
+        </figure>
+        <figure class="slide">
+          <blockquote>“They actually explain the why. That’s rare in finance.”</blockquote>
+          <figcaption>— Priya S., Director</figcaption>
+        </figure>
+        <button class="carousel-btn prev" aria-label="Previous">‹</button>
+        <button class="carousel-btn next" aria-label="Next">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Lead Form (static placeholder) -->
+  <section id="contact" class="section alt">
+    <div class="container split formwrap">
+      <div>
+        <h2>Get your free plan</h2>
+        <p>Tell us where you are and where you’re headed. We’ll reply within one business day.</p>
+        <ul class="ticks">
+          <li>No obligation discovery call</li>
+          <li>Confidential & secure</li>
+          <li>Actionable next steps</li>
+        </ul>
+      </div>
+      <form class="card form" method="post" action="#" onsubmit="event.preventDefault(); alert('Thanks! We\'ll be in touch.');">
+        <label>
+          <span>Full name</span>
+          <input type="text" required placeholder="Jane Doe" />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" required placeholder="you@company.com" />
+        </label>
+        <label>
+          <span>What’s your goal?</span>
+          <select required>
+            <option value="" disabled selected>Select one</option>
+            <option>Wealth planning</option>
+            <option>SMB cashflow</option>
+            <option>Pension & tax</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea rows="4" placeholder="A sentence or two is perfect"></textarea>
+        </label>
+        <button class="btn btn--primary" type="submit">Request my plan</button>
+        <p class="micro">By submitting you agree to our <a href="#">Terms</a> & <a href="#">Privacy</a>.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand" href="#">
+          <img src="/assets/logo.svg" alt="<%= company %> logo" width="28" height="28" />
+          <span><%= company %></span>
+        </a>
+        <p class="micro">© <%= new Date().getFullYear() %> <%= company %>. All rights reserved.</p>
+      </div>
+      <nav class="footnav">
+        <a href="#solutions">Solutions</a>
+        <a href="#why">Why Us</a>
+        <a href="#testimonials">Results</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
