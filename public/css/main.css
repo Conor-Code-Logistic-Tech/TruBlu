@@ -186,7 +186,7 @@ p {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
     color: var(--background-white);
     border-color: transparent;
     box-shadow: var(--shadow-glow);
@@ -195,22 +195,23 @@ p {
 .btn-primary:hover {
     transform: translateY(-4px) scale(1.02);
     box-shadow: var(--shadow-glow-hover), var(--shadow-xl);
-    background: linear-gradient(135deg, var(--primary-blue-light), var(--accent-cyan));
+    background: linear-gradient(135deg, var(--primary-blue-dark), var(--primary-blue));
 }
 
 .btn-secondary {
-    background: var(--glass-bg);
-    color: var(--background-white);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(20px);
-    box-shadow: var(--glass-shadow);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary-blue);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--primary-blue);
+    color: var(--background-white);
     transform: translateY(-4px) scale(1.02);
-    box-shadow: var(--shadow-glow), var(--glass-shadow);
-    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: var(--shadow-glow), var(--shadow-lg);
+    border-color: var(--primary-blue);
 }
 
 /* Focus styles for accessibility */
