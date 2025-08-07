@@ -97,12 +97,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const animatedElements = document.querySelectorAll('.service-card, .hero-card, .testimonial, .stat, .section-header');
     animatedElements.forEach(el => observer.observe(el));
     
-    // Add parallax effect to hero background
-    window.addEventListener('scroll', () => {
+    // Add subtle parallax effect to hero background (fixed)
+    let ticking = false;
+    
+    function updateParallax() {
         const scrolled = window.pageYOffset;
         const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        if (hero && scrolled < window.innerHeight) {
+            hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+        }
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
         }
     });
 });
